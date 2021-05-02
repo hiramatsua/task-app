@@ -29,6 +29,16 @@ class EditTask extends CreateTask
 
         $status_rule = Rule::in(array_keys(Task::STATUS));
         // -> 'in(1, 2, 3)' を出力する'status' => 'required|in(1, 2, 3)',
+
+        return $rule + [
+            'status' => 'required|' . $status_rule,
+        ];
+    }
+
+    public function attributes()
+    {
+        $attributes = parent::attributes();
+
         return $attributes + [
             'status' => '進捗',
         ];

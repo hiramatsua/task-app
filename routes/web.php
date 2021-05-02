@@ -14,21 +14,22 @@ use App\Http\Controllers\FolderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Auth機能のルーティング
-Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
 // ホーム画面
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 // タスク一覧ページ
-    Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    Route::get('/folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 // フォルダ追加
     Route::get('/folders/create', [FolderController::class, 'showCreateForm'])->name('folders.create');
     Route::post('/folders/create', [FolderController::class, 'create']);
 // タスク追加
-    Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
-    Route::post('/folders/{folder}/tasks/create', [TaskController::class, 'create']);
+    Route::get('/folders/{id}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
+    Route::post('/folders/{id}/tasks/create', [TaskController::class, 'create']);
 // タスク編集
-    Route::get('/folders/{folder}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
-    Route::post('/folders/{folder}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
+    Route::get('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
+    Route::post('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
 });
+
+// Auth機能のルーティング
+Auth::routes();
