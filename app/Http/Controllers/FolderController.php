@@ -17,7 +17,7 @@ class FolderController extends Controller
     {
         $folder = new Folder(); // Folderモデルのインスタンス作成
         $folder->title = $request->title;   // title入力値
-        $folder->save();        // DBへの書き込み
+        Auth::user()->folders()->save($folder); // ユーザ紐付けて、DBへ書き込み
 
         return redirect()->route('tasks.index', [
             'id' => $folder->id,
