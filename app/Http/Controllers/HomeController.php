@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;    //Authクラスのインポート
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // ログインユーザーを取得する
-        $user = Auth::user();
-        // ログインユーザーに紐づくフォルダを一つ取得する
-        $folder = $user->folders()->first();
+        $user = Auth::user();   // ログインユーザーを取得する
+        $folder = $user->folders()->first();// ログインユーザーに紐づくフォルダを一つ取得する
 
-        // まだ一つもフォルダを作っていなければホームページをレスポンスする
+        // 一つもフォルダがなければ、homeへ
         if (is_null($folder)) {
             return view('home');
         }
-        // フォルダがあればそのフォルダのタスク一覧にリダイレクトする
+        // フォルダがある。フォルダのタスク一覧にリダイレクト
         return redirect()->route('tasks.index', [
             'id' => $folder->id,
         ]);

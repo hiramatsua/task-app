@@ -43,6 +43,7 @@ class User extends Authenticatable
 
     public function folders()
     {
+        // User と Folderの関係性 1：多
         return $this->hasMany('App\Models\Folder');
     }
 }
