@@ -10,8 +10,13 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();   // ログインユーザーを取得する
-        $folder = $user->folders()->first();// ログインユーザーに紐づくフォルダを一つ取得する
+        if (is_null($user)) {
+            abort(403);
+        }
 
+        $folder = $user->folders()->first();// ログインユーザーに紐づくフォルダを一つ取得する
+        // var_dump($folder);
+        // exit;
         // 一つもフォルダがなければ、homeへ
         if (is_null($folder)) {
             return view('home');
