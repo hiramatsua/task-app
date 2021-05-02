@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Folder extends Model
 {
     use HasFactory;
+
+    public function tasks()
+    {
+        // Folderとタスクの関連性 1:多
+        return $this->hasMany('App\Models\Task');
+    }
 }
