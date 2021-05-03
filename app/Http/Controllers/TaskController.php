@@ -78,4 +78,24 @@ class TaskController extends Controller
             'id' => $task->folder_id,
         ]);
     }
+
+    // タスク削除フォーム
+    public function showRemoveForm(int $id, int $task_id)
+    {
+        $task = Task::find($task_id);
+
+        return view('tasks.remove', [
+            'task' => $task,
+        ]);
+    }
+
+    public function remove(int $id, int $task_id)
+    {
+        $task = Task::find($task_id);
+        Task::where('id', $task_id)->delete();
+
+        return redirect()->route('tasks.index', [
+            'id' => $task->folder_id,
+        ]);
+    }
 }

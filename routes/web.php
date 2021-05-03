@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth'], function() {
 // タスク編集
     Route::get('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
     Route::post('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
+// タスク削除
+    Route::get('/folders/{id}/tasks/{task_id}/remove', [TaskController::class, 'showRemoveForm'])->name('tasks.remove');
+    Route::post('/folders/{id}/tasks/{task_id}/remove', [TaskController::class, 'remove']);
 });
 
 // Auth機能のルーティング
