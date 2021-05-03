@@ -38,4 +38,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // ログイン nameに変更する。
+    public function username()
+    {
+        return 'name';
+    }
 }

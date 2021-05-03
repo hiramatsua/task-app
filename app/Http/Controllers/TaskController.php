@@ -17,17 +17,16 @@ class TaskController extends Controller
         $folders = Folder::all();// すべてのFolderを取得
         $current_folder = Folder::find($id);// 選ばれたフォルダを取得する
 
-        // if (Auth::user()->id !== $folder->user_id) {
-        //     abort(403);
-        // }
-        // $folders = Auth::user()->folders()->get();  // ユーザのフォルダを取得
+        if (Auth::user()->id !== $current_folder->user_id) {
+            abort(403);
+        }
 
+        $folders = Auth::user()->folders()->get();  // ユーザのフォルダを取得
         $tasks = $current_folder->tasks()->get();    // 選択したフォルダに紐づくタスク取得
 
         return view('tasks.index', [
             'folders' => $folders,
             'current_folder' => $current_folder,
-            // 'current_folder_id' => $current_folder->$id,
             'tasks' => $tasks,
         ]);
     }
