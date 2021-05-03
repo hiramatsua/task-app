@@ -7,23 +7,28 @@
     <title>ToDo App</title>
     @yield('styles')
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
         <nav class="my-navbar">
-            <a class="my-navbar-brand" href="{{ route('home') }}">ToDo App</a>
+            <a class="my-navbar-brand" href="{{ route('home') }}">
+                <i class="fa fa-btn fa-home"></i>ToDo App</a>
             <div class="my-navbar-control">
                 @if(Auth::check())
                 <!-- ログイン時 -->
-                    <span class="my-navbar-item">ようこそ, {{ Auth::user()->name }}さん</span>｜
-                    <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <span class="my-navbar-item">ようこそ, {{ Auth::user()->name }}さん</span>
+                    <form method="post" name="logout" action="{{ route('logout') }}">
                         @csrf
+                        <a href="javascript:logout.submit()">
+                            <i class="fa fa-btn fa-sign-out"></i>ログアウト</a>
                     </form>
                 @else
                 <!-- ログインしていない時 -->
-                    <a class="my-navbar-item" href="{{ route('login') }}">ログイン</a>｜
-                    <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
+                    <a href="{{ route('login') }}" class="my-navbar-item">
+                        <i class="fa fa-btn fa-sign-in"></i>ログイン</a>｜
+                    <a href="{{ route('register') }}" class="my-navbar-item">
+                        <i class="fa fa-btn fa-user"></i>ユーザ登録</a>
                 @endif
             </div>
         </nav>
@@ -31,14 +36,7 @@
     <main>
         @yield('content')
     </main>
-    @if(Auth::check())
-        <script>
-            document.getElementById('logout').addEventListener('click', function(event) {
-                event.preventDefault();
-                document.getElementById('logout-form').submit();
-            });
-        </script>
-    @endif
+
     @yield('scripts')
 </body>
 </html>

@@ -41,8 +41,9 @@
                                 <input type="text" class="form-control" name="due_date" id="due_date" value="{{ old('due_date') ?? $task->formatted_due_date }}" />
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-primary">編集</button>
-                                <p><a href="#" onClick="history.back(); return false;">前のページにもどる</a></p>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-edit"></i> 編 集</button>
+                                <p><a href="#" onClick="history.back(); return false;">
+                                        <i class="fa fa-btn fa-repeat"></i> 前のページにもどる</a></p>
                             </div>
                         </form>
                     </div>

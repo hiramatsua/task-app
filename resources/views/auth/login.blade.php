@@ -26,7 +26,7 @@
                                 <input type="password" class="form-control" id="password" name="password" />
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-primary">ログイン</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i> ログイン</button>
                             </div>
                         </form>
                     </div>
