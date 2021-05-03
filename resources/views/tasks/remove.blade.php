@@ -1,16 +1,12 @@
 <!-- tasks edit.blade.php タスクの編集 -->
 @extends('layout')
 
-@section('styles')
-    @include('share.flatpickr.styles')
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col col-md-offset-3 col-md-6">
                 <nav class="panel panel-default">
-                    <div class="panel-heading">タスクを編集する</div>
+                    <div class="panel-heading">タスクを削除する</div>
                     <div class="panel-body">
                     <!-- エラー表示 -->
                         @if($errors->any())
@@ -20,28 +16,28 @@
                                 @endforeach
                             </div>
                         @endif
-                        <form action="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id]) }}" method="POST">
+                        <form action="{{ route('tasks.remove', ['id' => $task->folder_id, 'task_id' => $task->id]) }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="title">タイトル</label>
-                                    <input type="text" class="form-control" name="title" id="title" value="{{ old('title') ?? $task->title }}" />
+                                <p>{{ $task->title }}</p>
                             </div>
                             <div class="form-group">
                                 <label for="status">進捗</label>
-                                <select name="status" id="status" class="form-control">
+                                <p>
                                     @foreach(\App\Models\Task::STATUS as $key => $val)
-                                        <option value="{{ $key }}" {{ $key == old('status', $task->status) ? 'selected' : '' }}>
+                                        @if ($key == $task->status)
                                             {{ $val['label'] }}
-                                        </option>
+                                        @endif
                                     @endforeach
-                                </select>
+                                </p>
                             </div>
                             <div class="form-group">
                                 <label for="due_date">期限</label>
-                                <input type="text" class="form-control" name="due_date" id="due_date" value="{{ old('due_date') ?? $task->formatted_due_date }}" />
+                                <p>{{ $task->formatted_due_date }}</p>
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-primary">編集</button>
+                                <button type="submit" class="btn btn-danger">削除</button>
                                 <p><a href="#" onClick="history.back(); return false;">前のページにもどる</a></p>
                             </div>
                         </form>
@@ -50,9 +46,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-<!-- Javascriptライブラリ flatpicker使用 -->
-@section('scripts')
-    @include('share.flatpickr.scripts')
 @endsection
