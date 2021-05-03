@@ -37,8 +37,10 @@
                                 <p>{{ $task->formatted_due_date }}</p>
                             </div>
                             <div class="text-right">
-                                <button type="submit" class="btn btn-danger">削除</button>
-                                <p><a href="#" onClick="history.back(); return false;">前のページにもどる</a></p>
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-trash-o"></i> 削 除</button>
+                                <p>
+                                    <a href="#" onClick="history.back(); return false;">
+                                        <i class="fa fa-btn fa-repeat"></i> 前のページにもどる</a></p>
                             </div>
                         </form>
                     </div>
